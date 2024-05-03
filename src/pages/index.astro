@@ -21,6 +21,7 @@ import seguridad from "@images/seguridad.webp";
 import entregaRapida from "@images/entrega-rapida.webp";
 import soporte from "@images/soporte.webp";
 import ModalHome from "@components/modal/ModalHome.jsx"
+import SliderHome from "@components/slider/SliderHome.astro"
 
 const avatarSrcs: Array<string> = [
   "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
@@ -49,6 +50,8 @@ const avatarSrcs: Array<string> = [
   />
 
   <ModalHome client:load/>
+
+  <SliderHome />
 
   <ClientsSection
     title="Con la confianza de los líderes de la industria"
