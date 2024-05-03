@@ -6,6 +6,7 @@ import enStrings from "@utils/en/navigation.ts";
 import Icon from "@components/ui/icons/Icon.astro";
 import BrandLogo from "@components/BrandLogo.astro";
 import { SITE } from "@data/constants";
+import FooterLogo from "../FooterLogo.astro";
 
 const strings = Astro.currentLocale === "en" ? enStrings : esStrings;
 const crafted: string = Astro.currentLocale === "en" ? "Created by" : "Creado por";
@@ -18,7 +19,7 @@ const crafted: string = Astro.currentLocale === "en" ? "Created by" : "Creado po
     <div class="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-5">
       <div class="col-span-full lg:col-span-1">
         <!-- Brand Logo -->
-        <BrandLogo class="h-auto w-32" />
+        <FooterLogo />
       </div>
       {
         strings.footerLinks.map((section) => (

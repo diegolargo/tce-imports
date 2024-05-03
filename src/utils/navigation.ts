@@ -11,7 +11,7 @@ const footerLinks = [
   {
     section: "Oficina",
     links: [
-      { name: "Bogotá, Colombia", url: "/welcome-to-docs/" },
+      { name: "Bogotá, Colombia", url: "#" },
     ]
   },
   {
