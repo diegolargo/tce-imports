@@ -2,21 +2,27 @@
 // Import section components
 import MainLayout from "@/layouts/MainLayout.astro";
 import Btn404 from "@components/ui/buttons/Btn404.astro";
+import { SITE } from "@data/constants";
+
+const pageTitle: string = `Página no Encontrada | ${SITE.title}`;
+
 
 // Define variables for page content
 const title: string = "404";
-const subTitle: string = "Oops, ce n'est pas l'outil que vous recherchiez !";
+const subTitle: string = "Wow, this isn't the service you were looking for!";
 const content: string =
-  "Ne laissez pas ce contretemps vous ralentir. Revenons à la construction de votre chef-d'œuvre.";
-const btnTitle: string = "Retournez";
+  "Don't let this setback stop you. Let's go back to TCE IMPORTS.";
+const btnTitle: string = "Back";
 ---
 
-<MainLayout title="Page Not Found | ScrewFast" lang="fr">
+<MainLayout
+  title={pageTitle}
+>
   <section class="grid h-svh place-content-center">
     <div class="mx-auto max-w-screen-xl px-4 py-8 lg:px-6 lg:py-16">
       <div class="mx-auto max-w-screen-sm text-center">
         <h1
-          class="text-dark mb-4 text-7xl font-extrabold text-yellow-500 dark:text-yellow-400 lg:text-9xl"
+          class="text-dark mb-4 text-7xl font-extrabold text-orange lg:text-9xl"
         >
           {title}
         </h1>
@@ -31,13 +37,11 @@ const btnTitle: string = "Retournez";
         >
           {content}
         </p>
-        <!--Display a button that navigates user back to the previous page-->
         <Btn404 title={btnTitle} id="go-back" />
       </div>
     </div>
   </section>
 </MainLayout>
-<!--JavaScript code that adds click event to the Button, resulting in going back to the previous page in history-->
 <script>
   document.getElementById("go-back")?.addEventListener("click", () => {
     history.back();

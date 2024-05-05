@@ -4,15 +4,13 @@ import vercelStatic from "@astrojs/vercel/static";
 import sitemap from "@astrojs/sitemap";
 import compressor from "astro-compressor";
 import starlight from "@astrojs/starlight";
-
 import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  // https://docs.astro.build/en/guides/images/#authorizing-remote-images
   site: "https://www.tceimports.com",
   image: {
-    domains: ["images.unsplash.com"]
+    domains: ["tceimports.com"]
   },
   i18n: {
     defaultLocale: "es",
@@ -34,7 +32,7 @@ export default defineConfig({
       }
     }
   }), starlight({
-    title: "ScrewFast Docs",
+    title: "Tce Imports",
     defaultLocale: "root",
     locales: {
       root: {
@@ -50,57 +48,20 @@ export default defineConfig({
         lang: "en"
       }
     },
-    // https://starlight.astro.build/guides/sidebar/
-    sidebar: [{
-      label: "Guías de Inicio Rápido xd",
-      translations: {
-        en: "guias en ingles xd",
-        es: "Guías de Inicio Rápido"
-      },
-      autogenerate: {
-        directory: "guides"
-      }
-    }, {
-      label: "Tools & Equipment",
-      items: [{
-        label: "Tool Guides",
-        link: "tools/tool-guides/"
-      }, {
-        label: "Equipment Care",
-        link: "tools/equipment-care/"
-      }]
-    }, {
-      label: "Construction Services",
-      autogenerate: {
-        directory: "construction"
-      }
-    }, {
-      label: "Advanced Topics",
-      autogenerate: {
-        directory: "advanced"
-      }
-    }],
-    social: {
-      github: "https://github.com/"
-    },
     disable404Route: true,
     customCss: ["./src/styles/starlight.css"],
     favicon: "/favicon.ico",
-    components: {
-      SiteTitle: "./src/components/ui/starlight/SiteTitle.astro",
-      Head: "./src/components/ui/starlight/Head.astro"
-    },
     head: [{
       tag: "meta",
       attrs: {
         property: "og:image",
-        content: "https://screwfast.uk" + "/social.webp"
+        content: "https://www.tceimports.com" + "/social.webp"
       }
     }, {
       tag: "meta",
       attrs: {
         property: "twitter:image",
-        content: "https://screwfast.uk" + "/social.webp"
+        content: "https://www.tceimports.com" + "/social.webp"
       }
     }]
   }), compressor({

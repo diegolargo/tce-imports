@@ -4,12 +4,11 @@ import FooterSocialLink from "@components/ui/links/FooterSocialLink.astro";
 import esStrings from "@utils/navigation.ts";
 import enStrings from "@utils/en/navigation.ts";
 import Icon from "@components/ui/icons/Icon.astro";
-import BrandLogo from "@components/BrandLogo.astro";
 import { SITE } from "@data/constants";
 import FooterLogo from "../FooterLogo.astro";
 
 const strings = Astro.currentLocale === "en" ? enStrings : esStrings;
-const crafted: string = Astro.currentLocale === "en" ? "Created by" : "Creado por";
+const crafted: string = Astro.currentLocale === "en" ? " By YOUR EXPRESS CARGO, All rights reserved" : " Por TU CARGA EXPRESS, Todos los derechos reservados";
 ---
 
 <footer class="w-full bg-zinc-200 dark:bg-neutral-900">
@@ -18,7 +17,6 @@ const crafted: string = Astro.currentLocale === "en" ? "Created by" : "Creado po
   >
     <div class="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-5">
       <div class="col-span-full lg:col-span-1">
-        <!-- Brand Logo -->
         <FooterLogo />
       </div>
       {

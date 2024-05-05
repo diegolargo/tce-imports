@@ -13,7 +13,7 @@ export default function MyModal() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:1337/api/modal-homes?populate[anuncio][fields][0]=url');
+        const response = await fetch('https://tce-cms-strapi-192i.onrender.com/api/modal-homes?populate[anuncio][fields][0]=url');
         const data = await response.json();
         if (data.data.length > 0) {
           const title = data.data[0].attributes.title
@@ -65,7 +65,7 @@ export default function MyModal() {
                     {title}
                   </Dialog.Title>
 
-                  <img className='rounded-xl' src={`http://localhost:1337${image}`} alt={title} />
+                  <img className='rounded-xl' src={`https://tce-cms-strapi-192i.onrender.com${image}`} alt={title} />
 
                   <div className="mt-6 flex justify-center">
                     <button

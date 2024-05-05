@@ -1,10 +1,10 @@
 
 const navBarLinks = [
   { name: "Home", url: "/en" },
-  { name: "Who are we?", url: "/en/products" },
+  { name: "Who are we?", url: "/en/#about" },
   { name: "Services", url: "/en/services" },
   { name: "Blog", url: "/en/blog" },
-  { name: "Contact", url: "/en/contact" },
+  { name: "Contact", url: "https://api.whatsapp.com/send?phone=573228553687&text=Hola%2Ctengo%20una%20consulta." },
 ];
 
 const footerLinks = [

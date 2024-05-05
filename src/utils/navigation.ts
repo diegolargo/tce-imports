@@ -1,12 +1,10 @@
-// An array of links for navigation bar
 const navBarLinks = [
   { name: "Inicio", url: "/" },
   { name: "¿Quiénes somos?", url: "/#about" },
   { name: "Servicios", url: "/services" },
   { name: "Blog", url: "/blog" },
-  { name: "Contacto", url: "/contact" },
+  { name: "Contacto", url: "https://api.whatsapp.com/send?phone=573228553687&text=Hola%2Ctengo%20una%20consulta." },
 ];
-// An array of links for footer
 const footerLinks = [
   {
     section: "Oficina",
@@ -28,7 +26,6 @@ const footerLinks = [
     ]
   }
 ];
-// An object of links for social icons
 const socialLinks = {
   facebook: "https://www.facebook.com/people/Tucarga-Express/100063773003174/",
   instagram: "https://www.instagram.com/tceimports13/",

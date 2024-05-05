@@ -1,35 +1,22 @@
 ---
-// Import necessary components, modules and types
 import MainLayout from "@/layouts/MainLayout.astro";
-import CardBlog from "@components/ui/cards/CardBlog.astro";
-import CardBlogRecent from "@components/ui/cards/CardBlogRecent.astro";
-import CardInsight from "@components/ui/cards/CardInsight.astro";
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+import Icon from "@/components/ui/icons/Icon.astro";
 import { SITE } from "@data/constants";
+import { Image } from "astro:assets";
 
-// Get all blogs post and sort them based on publish date
-const blogPosts: CollectionEntry<"blog">[] = (await getCollection("blog")).sort(
-  (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
-    b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
-// Get all insights posts
-const insightPosts: CollectionEntry<"insights">[] =
-  await getCollection("insights");
-
-// Separate the most recent post from others
-const mostRecentPost: CollectionEntry<"blog"> = blogPosts[0];
-const otherPosts: CollectionEntry<"blog">[] = blogPosts.slice(1);
-
-// Define variables for page content
-const title: string = "Your Gateway to Construction Excellence";
+const title: string = "TCE IMPORTS BLOG";
 const subTitle: string =
-  "Explore the latest news, tips, and insights from ScrewFast to enhance your construction projects. From product spotlights to project management strategies, our blog is your go-to resource for all things hardware and construction.";
-const secondTitle: string = "Insights";
-const secondSubTitle: string =
-  "Stay up-to-date with the latest trends and developments in the construction industry with insights from ScrewFast's team of industry experts. ";
+  "Explore our blog for helpful information and tips on importing and shipping internationally. From step-by-step guides to the latest trends in global trade, our blog is your trusted resource for staying up-to-date in the world of imports and shipping.";
 
 const pageTitle: string = `Blog | ${SITE.title}`;
+
+const response = await fetch(
+  "https://tce-cms-strapi-192i.onrender.com/api/blogs?fields[0]=title&fields[1]=description&populate[imgBlog][fields][0]=url"
+);
+const result = await response.json();
+const url = 'https://tce-cms-strapi-192i.onrender.com'
+console.log(result.data[0].attributes.imgBlog.data.attributes.url);
+
 ---
 
 <MainLayout
@@ -37,17 +24,19 @@ const pageTitle: string = `Blog | ${SITE.title}`;
   structuredData={{
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": "https://screwfast.uk/blog",
-    "url": "https://screwfast.uk/blog",
-    "name": "Blog | ScrewFast",
-    "description": "Stay up-to-date with the latest trends and developments in the construction industry with insights from ScrewFast's team of industry experts.",
-    "isPartOf": {
+    "@id": "https://www.tceimports.com/services",
+    url: "https://www.tceimports.com/services",
+    name: "Services | TCE IMPORTS",
+    description:
+      "Discover how at TCE Imports we turn your wishes into reality, importing the best products from the United States to Colombia.",
+    isPartOf: {
       "@type": "WebSite",
-      "url": "https://screwfast.uk",
-      "name": "ScrewFast",
-      "description": "ScrewFast offers top-tier hardware tools and expert construction services to meet all your project needs."
+      url: "https://www.tceimports.com/",
+      name: "TCE IMPORTS",
+      description:
+        "Discover how at TCE Imports we turn your wishes into reality, importing the best products from the United States to Colombia.",
     },
-    "inLanguage": "es-ES"
+    inLanguage: "en-EN",
   }}
 >
   <section
@@ -68,39 +57,38 @@ const pageTitle: string = `Blog | ${SITE.title}`;
       </p>
     </div>
   </section>
-
+  <!--Blog posts section-->
   <section
     class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
   >
-    <!--Blog posts grid-->
-    <div class="grid gap-6 lg:grid-cols-2">
-      {otherPosts.map((blogEntry) => <CardBlog blogEntry={blogEntry} />)}
-    </div>
-  </section>
-  <!--Most recent blog post-->
-  <section
-    class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
-  >
-    <CardBlogRecent blogEntry={mostRecentPost} />
-  </section>
-  <!--Insights section-->
-  <section
-    class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
-  >
-    <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
-      <h2
-        class="text-2xl font-bold text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight"
-      >
-        {secondTitle}
-      </h2>
-      <p class="mt-1 text-pretty text-neutral-600 dark:text-neutral-400">
-        {secondSubTitle}
-      </p>
-    </div>
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
-        insightPosts.map((insightEntry) => (
-          <CardInsight insightEntry={insightEntry} />
+        result.data.map((blog:any) => (
+          <a
+            class="group rounded-xl outline-none ring-zinc-500 transition duration-300 focus-visible:ring dark:ring-zinc-200 dark:focus:outline-none"
+            href={`/blog/${blog.id}/`}
+          >
+            <div class="relative overflow-hidden rounded-xl pt-[50%] sm:pt-[70%]">
+              <Image
+                width={100}
+                height={100}
+                class="absolute start-0 top-0 size-full rounded-xl object-cover transition duration-500 ease-in-out group-hover:scale-105"
+                src={url + blog.attributes.imgBlog.data.attributes.url}
+                alt={blog.attributes.title}
+                draggable={"false"}
+                format={"avif"}
+              />
+            </div>
+            <div class="mt-7">
+              <h3 class="text-xl font-bold text-neutral-800 group-hover:text-neutral-600 dark:text-neutral-200 dark:group-hover:text-neutral-400">
+                {blog.attributes.title}
+              </h3>
+              <p class="text-orange-400 dark:text-white mt-5 inline-flex items-center gap-x-1 font-medium decoration-2 group-hover:underline">
+                Read More
+                <Icon name="arrowRightStatic" />
+              </p>
+            </div>
+          </a>
         ))
       }
     </div>
