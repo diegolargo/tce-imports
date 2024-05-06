@@ -9,7 +9,6 @@ import LanguagePicker from "@components/ui/LanguagePicker.astro";
 
 // Select the correct translation based on the page's lang prop:
 const strings = Astro.currentLocale === "en" ? enStrings : esStrings;
-const homeUrl = Astro.currentLocale === "en" ? "/en" : "/";
 ---
 
 <!-- Main header component -->

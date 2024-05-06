@@ -71,7 +71,7 @@ const appleTouchIcon = await getImage({
 
 {
   structuredData && (
-    <script
+    <script is:inline
       type="application/ld+json"
       set:html={JSON.stringify(structuredData)}
     />
